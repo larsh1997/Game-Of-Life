@@ -23,4 +23,5 @@ class Grid {
            const = Do not alter anything  */
         int getWidth() const { return width; }
         int getHeight() const { return height; }
+        std::vector<std::vector<bool>>& getCells();
 };

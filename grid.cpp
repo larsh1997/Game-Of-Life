@@ -55,3 +55,7 @@ void Grid::clear() {
         std::fill(row.begin(), row.end(), false);
     }
 }
+
+std::vector<std::vector<bool>>& Grid::getCells() {
+    return cells;
+}
