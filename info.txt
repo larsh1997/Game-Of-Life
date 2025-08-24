@@ -1,0 +1,1 @@
+- add -mwindows to makefile (remove console)
