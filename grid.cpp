@@ -24,14 +24,24 @@ Grid::Grid(int gridWidth, int gridHeight, int cellSize)
    C++ automatically creates the reference
 */
 void Grid::draw(sf::RenderWindow& window) {
+    sf::RectangleShape backgroundShape;
+    backgroundShape.setSize(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
+    backgroundShape.setFillColor(sf::Color(200, 200, 200)); 
+    
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
+            /* Calculate screen coordinates from grid coordinates */
+            sf::Vector2f position(
+                static_cast<float>(x * cellSize), 
+                static_cast<float>(y * cellSize)
+            );
+            
             if (cells[y][x]) {
-                /* Calculate screen coordinates from grid coordinates */
-                cellShape.setPosition(sf::Vector2f(
-                    static_cast<float>(x * cellSize), 
-                    static_cast<float>(y * cellSize)));
+                cellShape.setPosition(position);
                 window.draw(cellShape);
+            } else {
+                backgroundShape.setPosition(position);
+                window.draw(backgroundShape);
             }
         }
     }

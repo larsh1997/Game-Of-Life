@@ -38,15 +38,12 @@ int Logic::countNeighbours(int x, int y)
     };
 
     for (const auto& offset : offsets) {
-        int neighborX = x + offset.second;  
-        int neighborY = y + offset.first;  
+        /* Modulo to wrap coordinates around */
+        int neighborX = (x + offset.second + width) % width;  
+        int neighborY = (y + offset.first + height) % height;  
         
-        if (neighborX >= 0 && neighborX < width && 
-            neighborY >= 0 && neighborY < height) {
-            
-            if (cells[neighborY][neighborX]) {
-                neighboursAlive++;
-            }
+        if (cells[neighborY][neighborX]) {
+            neighboursAlive++;
         }
     }
 
